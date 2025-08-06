@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -8,6 +8,15 @@ const Login = () => {
     const [message, setMessage] = useState("") // ✅ State to show messages
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => {
+                setMessage("");
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [message]);
+
     const HandleLogin = async () => {
         try {
             const response = await axios.post("http://localhost:3000/admin/login", {
@@ -16,11 +25,10 @@ const Login = () => {
             }, {
                 withCredentials: true
             })
-            
-            setMessage(response.data.message)
-
             if (response.data.message === "welcome Admin...") {
-                navigate("/admindashboard")
+                navigate("/admindashboard");
+            } else {
+                setMessage(response.data.message);
             }
         } catch (err) {
             console.log(err)
