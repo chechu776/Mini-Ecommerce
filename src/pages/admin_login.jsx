@@ -20,7 +20,7 @@ const Login = () => {
             setMessage(response.data.message)
 
             if (response.data.message === "welcome Admin...") {
-                navigate("/showAllUsers")
+                navigate("/admindashboard")
             }
         } catch (err) {
             console.log(err)
