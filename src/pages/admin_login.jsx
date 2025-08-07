@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [message, setMessage] = useState("") // ✅ State to show messages
+    const [message, setMessage] = useState("") 
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const Login = () => {
             }, {
                 withCredentials: true
             })
-            if (response.data.message === "welcome Admin...") {
+            if (response.data.type) {
                 navigate("/admindashboard");
             } else {
                 setMessage(response.data.message);
@@ -89,18 +89,18 @@ const Login = () => {
                             <button
                                 type="submit"
                                 onClick={HandleLogin}
-                                className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-indigo-500"
+                                className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold hover:cursor-pointer text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-indigo-500"
                             >
                                 Log In
                             </button>
                         </div>
 
                         {message && (
-                            <div className="mt-4 relative bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
-                                <span className="block sm:inline">{message}</span>
+                            <div className="mt-4 relative bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                                <span className="block">{message}</span>
                                 <button
                                     onClick={() => setMessage("")}
-                                    className="absolute top-1 right-2 text-xl font-semibold text-red-700 hover:text-red-900"
+                                    className="absolute top-1 right-2 text-xl font-semibold text-red-700 hover:text-red-900 hover:cursor-pointer"
                                 >
                                     &times;
                                 </button>
