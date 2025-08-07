@@ -15,24 +15,6 @@ const Table = () => {
         getUser();
     }, []);
 
-    const handleEdit = (id) => {
-        console.log("Edit user:", id);
-        // Implement navigation or popup edit logic here
-    };
-
-    const handleDelete = async (id) => {
-        try {
-            // Replace with actual API call if needed
-            await axios.delete(`http://localhost:3000/admin/deleteUser/${id}`, {
-                withCredentials: true,
-            });
-            // Remove user from UI
-            setUser(prev => prev.filter(user => user._id !== id));
-        } catch (err) {
-            console.error("Delete failed:", err);
-        }
-    };
-
     return (
         <div className="overflow-x-auto p-4">
             <h1 className="text-white font-bold text-5xl mb-6">Manage Users</h1>
@@ -67,7 +49,7 @@ const Table = () => {
                             <td className="py-3 px-4">{item.email}</td>
                             <td className="py-3 px-4">
                                 <button
-                                    className={`px-3 py-1 font-semibold rounded text-white ${item.status === 'active'
+                                    className={`px-3 py-1 font-semibold hover:cursor-pointer rounded text-white ${item.status === 'active'
                                             ? 'bg-green-500 hover:bg-green-600'
                                             : 'bg-red-500 hover:bg-red-600'
                                         }`}
@@ -77,11 +59,11 @@ const Table = () => {
                             </td>
                             <td className="py-9 px-4 flex justify-center items-center gap-2">
                                 <button
-                                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-1 px-3 rounded">
+                                    className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-1 px-3 rounded hover:cursor-pointer">
                                     Edit
                                 </button>
                                 <button
-                                    className="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded">
+                                    className="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded hover:cursor-pointer">
                                     Delete
                                 </button>
                             </td>
