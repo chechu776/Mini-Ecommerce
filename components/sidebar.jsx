@@ -1,9 +1,31 @@
+import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 const Sidebar = () => {
+
+  const navigate = useNavigate()
+  const logout = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/admin/logout", {
+        withCredentials: true,
+      });
+      console.log(response.data.success);
+
+      if (response.data.success) {
+        navigate("/admin/login")
+      }
+      else {
+        alert("Logout failed")
+      }
+    }
+    catch (err) {
+      console.log(err);
+      alert("Logout Failed")
+    }
+  }
+
   return (
-    <div className="fixed top-0 left-0 h-screen group bg-gray-900 text-white transition-all duration-500 w-18 hover:w-64 overflow-hidden z-50">
+    <div className="fixed top-0 left-0 h-screen  bg-gray-900 text-white transition-all duration-500 w-18 hover:w-64 overflow-hidden z-50">
       <div className="h-20 flex items-center justify-center px-4">
         <Link to="/admindashboard">
           <img src="/ecom.png" alt="Logo" className="w-8" />
@@ -35,12 +57,10 @@ const Sidebar = () => {
             <span className="whitespace-nowrap overflow-hidden">Manage Orders</span>
           </li>
         </Link>
-        <Link to="/admin/logout" className="w-full">
-          <li className="py-6 hover:bg-white/10 rounded-md transition-all flex items-center gap-6 text-lg font-semibold absolute bottom-4 w-[calc(100%-2rem)]">
-            <img src="/src/assets/logout.png" alt="Logout" className="w-5 h-5" />
-            <span className="whitespace-nowrap overflow-hidden">Logout</span>
-          </li>
-        </Link>
+        <li onClick={logout} className="py-6 hover:bg-white/10 rounded-md transition-all flex items-center gap-6 text-lg font-semibold absolute hover:cursor-pointer bottom-4 w-[calc(100%-2rem)]">
+          <img src="/src/assets/logout.png" alt="Logout" className="w-5 h-5" />
+          <span className="whitespace-nowrap overflow-hidden">Logout</span>
+        </li>
       </ul>
     </div>
   );
