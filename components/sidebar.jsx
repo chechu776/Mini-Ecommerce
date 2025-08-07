@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="fixed top-0 left-0 h-screen bg-gray-900 text-white transition-all duration-500 w-18 hover:w-64 overflow-hidden z-50">
+    <div className="fixed top-0 left-0 h-screen group bg-gray-900 text-white transition-all duration-500 w-18 hover:w-64 overflow-hidden z-50">
       <div className="h-20 flex items-center justify-center px-4">
         <Link to="/admindashboard">
           <img src="/ecom.png" alt="Logo" className="w-8" />
