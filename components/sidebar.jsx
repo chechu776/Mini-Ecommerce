@@ -12,6 +12,7 @@ const Sidebar = () => {
       console.log(response.data.success);
 
       if (response.data.success) {
+        alert(response.data.message)
         navigate("/admin/login")
       }
       else {
