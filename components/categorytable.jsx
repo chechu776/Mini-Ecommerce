@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 const Table = () => {
     const [category, setCategory] = useState([]);
     const [message, setMessage] = useState();
+    const [show, setShow] = useState(false);
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("")
     const navigate = useNavigate()
     useEffect(() => {
         if (message) {
@@ -16,10 +19,9 @@ const Table = () => {
         }
     }, [message]);
     const getCategory = async () => {
-            const response = await Axiosinstance.get("/category/showAllCategory");
-            console.log(response);
-            setCategory(response.data);
-        };
+        const response = await Axiosinstance.get("/category/showAllCategory");
+        setCategory(response.data);
+    };
     useEffect(() => {
         getCategory();
     }, []);
@@ -27,12 +29,24 @@ const Table = () => {
         try {
             const response = await Axiosinstance.delete(`/category/deleteCategory/${id}`)
             if (response.data.success) {
-                setMessage(response.data.message)
                 getCategory();
+                setMessage(response.data.message)
+
             }
             else {
                 setMessage(response.data.message)
             }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+    const addCategory = async () => {
+        try {
+            const response = await Axiosinstance.post("/category/addCategory", { name, description })
+            getCategory()
+            setName(""); setDescription("")
+            setShow(false)
         }
         catch(err)
         {
@@ -44,7 +58,7 @@ const Table = () => {
         <div className="overflow-x-auto p-4">
             <div className='flex justify-between w-11/12 mb-5' >
                 <h1 className="text-white font-bold text-5xl mb-6">Manage Categories</h1>
-                <button className='bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg px-2 py-1 hover:cursor-pointer'>Add new Category</button>
+                <button onClick={() => setShow(true)} className='bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg px-2 py-1 hover:cursor-pointer'>Add new Category</button>
             </div>
 
             {message && (
@@ -58,6 +72,42 @@ const Table = () => {
                     </button>
                 </div>
             )}
+            {show && (
+                <div className="fixed top-0 left-0 w-full h-full bg-transparent bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-yellow-50 rounded-lg p-6 w-96 shadow-lg">
+                        <h2 className="text-xl font-bold mb-4 text-center text-gray-800">Add New Category</h2>
+                        <input
+                            type="text"
+                            placeholder="Category Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full mb-3 px-3 py-2 border border-gray-300 rounded"
+                        />
+                        <textarea
+                            placeholder="Description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded"
+                        />
+                        <div className="flex justify-between">
+                            <button
+                                onClick={addCategory}
+                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                            >
+                                Add
+                            </button>
+                            <button
+                                onClick={() => setShow(false)}
+                                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
             <table className="w-11/12 bg-gray-900 text-white rounded-t-lg shadow-lg">
                 <thead>
                     <tr className="bg-gray-900">
@@ -73,7 +123,7 @@ const Table = () => {
                             key={index}
                             className="bg-white hover:bg-gray-200 text-gray-800 hover:text-gray-900 font-medium border-b border-gray-300 text-center"
                         >
-                            <td className="py-3 px-4">{index+1}</td>
+                            <td className="py-3 px-4">{index + 1}</td>
                             <td className="py-3 px-4">{item.name}</td>
                             <td className="py-3 px-4">{item.description}</td>
                             <td className="py-3 px-4 flex justify-center gap-5">

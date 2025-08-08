@@ -27,11 +27,7 @@ const Table = () => {
             const match = user.find((u) => u._id == id)
             const newStatus = match.status == "active" ? "inactive" : "active"
             const response = await Axiosinstance.patch(`/admin/userstatus/${id}`, { status: newStatus }, { withCredentials: true })
-            setUser((p) =>
-                p.map((u) =>
-                    u._id === id ? { ...u, status: newStatus } : u
-                )
-            );
+            getUser()
             setMessage(response.data.message)
         }
         catch (err) {
