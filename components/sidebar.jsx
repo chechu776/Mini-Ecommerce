@@ -1,12 +1,14 @@
 import axios from "axios";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Axiosinstance from "../src/Axiosinstance";
+
 const Sidebar = () => {
 
   const navigate = useNavigate()
   const logout = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/admin/logout", {
+      const response = await Axiosinstance.get("/admin/logout", {
         withCredentials: true,
       });
       console.log(response.data.success);

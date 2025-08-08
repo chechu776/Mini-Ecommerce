@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import Axiosinstance from '../Axiosinstance'
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -19,7 +20,7 @@ const Login = () => {
 
     const HandleLogin = async () => {
         try {
-            const response = await axios.post("http://localhost:3000/admin/login", {
+            const response = await Axiosinstance.post("/admin/login", {
                 email: email,
                 password: password
             }, {
