@@ -54,7 +54,6 @@ const Table = () => {
                 </div>
             )}
 
-
             <table className="w-11/12 bg-gray-900 text-white rounded-t-lg shadow-lg">
                 <thead>
                     <tr className="bg-gray-900">
