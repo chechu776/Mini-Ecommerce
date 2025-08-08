@@ -14,12 +14,12 @@ const Table = () => {
             return () => clearTimeout(timer);
         }
     }, [message]);
-    useEffect(() => {
-        const getUser = async () => {
+    const getUser = async () => {
             const response = await Axiosinstance.get("/admin/showAllUsers");
             console.log(response);
             setUser(response.data);
         };
+    useEffect(() => {
         getUser();
     }, []);
     const handleStatus = async (id) => {
@@ -70,7 +70,7 @@ const Table = () => {
                             key={index}
                             className="bg-white hover:bg-gray-200 text-gray-800 hover:text-gray-900 font-medium border-b border-gray-300 text-center"
                         >
-                            <td className="py-3 px-4">{item._id}</td>
+                            <td className="py-3 px-4">{index+1}</td>
                             <td className="py-3 px-4">{item.name}</td>
                             <td className="py-3 px-4">
                                 <img

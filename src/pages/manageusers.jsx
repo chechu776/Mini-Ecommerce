@@ -11,7 +11,6 @@ const Showallusers = () => {
       <div className="transition-all duration-300 ml-64 w-full">
         <Table />
       </div>
-
     </div>
   )
 }
