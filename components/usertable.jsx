@@ -38,9 +38,6 @@ const Table = () => {
             console.log(err);
         }
     }
-    const deleteUser = async(id)=>{
-
-    }
 
     return (
         <div className="overflow-x-auto p-4">
@@ -65,7 +62,6 @@ const Table = () => {
                         <th className="py-2 px-4 text-center">Phone no</th>
                         <th className="py-2 px-4 text-center">Email</th>
                         <th className="py-2 px-4 text-center">Status</th>
-                        <th className="py-2 px-4 text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,12 +89,6 @@ const Table = () => {
                                         }`} onClick={() => handleStatus(item._id)}
                                 >
                                     {item.status}
-                                </button>
-                            </td>
-                            <td className="py-9 px-4 flex justify-center items-center gap-2">
-                                <button onClick={()=> deleteUser(item._id) }
-                                    className="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded hover:cursor-pointer">
-                                    Delete
                                 </button>
                             </td>
                         </tr>
