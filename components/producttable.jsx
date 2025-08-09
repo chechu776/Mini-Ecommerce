@@ -5,6 +5,13 @@ import Axiosinstance from '../src/Axiosinstance';
 const Table = () => {
     const [product, setProduct] = useState([]);
     const [message, setMessage] = useState();
+    const [show, setShow] = useState(false)
+    const [name, setName] = useState("")
+    const [brand, setBrand] = useState("")
+    const [category, setCategory] = useState("")
+    const [image, setImage] = useState("")
+    const [description, setDescription] = useState("")
+    const [price, setPrice] = useState("")
     useEffect(() => {
         if (message) {
             const timer = setTimeout(() => {
@@ -35,12 +42,44 @@ const Table = () => {
             console.log(err);
         }
     }
+    const addProduct = async () => {
+        try {
+            const formData = new FormData();
+            formData.append("name", name);
+            formData.append("brand", brand);
+            formData.append("category", category);
+            formData.append("description", description);
+            formData.append("price", price);
+            formData.append("image", image);
+
+            const response = await Axiosinstance.post("/product/addProduct", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            getProduct();
+            setName("");
+            setBrand("");
+            setCategory("");
+            setDescription("");
+            setImage(null);
+            setPrice("");
+            setShow(false);
+
+            if (response.data.success) {
+                setMessage(response.data.message);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <div className="overflow-x-auto p-4">
             <div className='flex justify-between w-11/12 mb-5' >
                 <h1 className="text-white font-bold text-5xl mb-6">Manage Products</h1>
-                <button className='bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg px-2 py-1 hover:cursor-pointer'>Add new Product</button>
+                <button onClick={() => setShow(true)} className='bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg px-2 py-1 hover:cursor-pointer'>Add new Product</button>
             </div>
             {message && (
                 <div className="mt-4 relative bg-red-green border border-green-400 text-green-700 px-4 py-3 rounded w-11/12">
@@ -51,6 +90,65 @@ const Table = () => {
                     >
                         &times;
                     </button>
+                </div>
+            )}
+
+            {show && (
+                <div className="fixed top-0 left-0 w-full h-full bg-transparent bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-yellow-50 rounded-lg p-6 w-96 shadow-lg">
+                        <h2 className="text-xl font-bold mb-4 text-center text-gray-800">Add New Products</h2>
+                        <input
+                            type="text"
+                            placeholder="Product Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full mb-3 px-3 py-2 border border-gray-300 rounded"
+                        />
+                        <input
+                            placeholder="Brand"
+                            value={brand}
+                            onChange={(e) => setBrand(e.target.value)}
+                            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded"
+                        />
+                        <input
+                            placeholder="Category ID"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded"
+                        />
+                        <input
+                            placeholder="Description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded"
+                        />
+                        <input
+                            type='file'
+                            placeholder="Product Image" 
+                            onChange={(e) => setImage(e.target.files[0])}
+                            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded"
+                        />
+                        <input
+                            placeholder="Price"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                            className="w-full mb-4 px-3 py-2 border border-gray-300 rounded"
+                        />
+                        <div className="flex justify-between">
+                            <button
+                                onClick={addProduct}
+                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                            >
+                                Add
+                            </button>
+                            <button
+                                onClick={() => setShow(false)}
+                                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
                 </div>
             )}
 

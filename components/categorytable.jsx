@@ -47,9 +47,11 @@ const Table = () => {
             getCategory()
             setName(""); setDescription("")
             setShow(false)
+            if (response.data.success) {
+                setMessage(response.data.message);
+            }
         }
-        catch(err)
-        {
+        catch (err) {
             console.log(err);
         }
     }
