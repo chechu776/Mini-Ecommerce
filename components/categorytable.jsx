@@ -95,13 +95,13 @@ const Table = () => {
                         <div className="flex justify-between">
                             <button
                                 onClick={addCategory}
-                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 hover:cursor-pointer"
                             >
                                 Add
                             </button>
                             <button
                                 onClick={() => setShow(false)}
-                                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 hover:cursor-pointer"
                             >
                                 Cancel
                             </button>
