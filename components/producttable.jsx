@@ -4,12 +4,12 @@ import Axiosinstance from '../src/Axiosinstance';
 
 const Table = () => {
     const [product, setProduct] = useState([]);
+    const [categories, setCategories] = useState("")
     const [message, setMessage] = useState();
     const [editId, setEditId] = useState(null)
     const [show, setShow] = useState(false)
     const [name, setName] = useState("")
     const [brand, setBrand] = useState("")
-    const[categories,setCategories]=useState("")
     const [category, setCategory] = useState("")
     const [image, setImage] = useState("")
     const [oldImage, setOldImage] = useState("")
@@ -67,7 +67,7 @@ const Table = () => {
             formData.append("brand", brand);
             formData.append("category", category);
             formData.append("description", description);
-            formData.append("price", price);
+            formData.append("price", price);    
             if (image) {
                 formData.append("image", image);
             }
@@ -150,7 +150,7 @@ const Table = () => {
                             onChange={(e) => setCategory(e.target.value)}
                             className="w-full mb-4 px-3 py-2 border border-gray-300 rounded"
                         >
-                            <option value="" >---Select Category---</option>
+                            <option value="" >---Select a Category---</option>
                             {categories.map((c) => (<option className='bg-yellow-50' key={c._id} value={c._id}>{c.name}</option>))}
                         </select>
                         <input
