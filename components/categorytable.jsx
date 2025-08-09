@@ -26,12 +26,13 @@ const Table = () => {
         getCategory();
     }, []);
     const deleteCategory = async (id) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this Category?");
+        if (!confirmDelete) return;
         try {
             const response = await Axiosinstance.delete(`/category/deleteCategory/${id}`)
             if (response.data.success) {
                 getCategory();
                 setMessage(response.data.message)
-
             }
             else {
                 setMessage(response.data.message)
