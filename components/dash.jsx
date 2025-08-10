@@ -51,7 +51,6 @@ const Dash = () => {
             className={`p-6 rounded-2xl shadow-lg text-white ${card.color} transform hover:scale-105 transition-transform duration-300`}
           >
             <h2 className="text-xl font-semibold">{card.title}</h2>
-            
             <p className="text-4xl font-bold mt-3">{card.value}</p>
           </div>
         ))}
