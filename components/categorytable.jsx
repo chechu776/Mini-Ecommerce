@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Axiosinstance from '../src/Axiosinstance';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,61 +6,85 @@ const Table = () => {
     const [category, setCategory] = useState([]);
     const [message, setMessage] = useState();
     const [show, setShow] = useState(false);
+    const [editId, setEditId] = useState(null);
     const [name, setName] = useState("");
-    const [description, setDescription] = useState("")
-    const navigate = useNavigate()
+    const [description, setDescription] = useState("");
+    const navigate = useNavigate();
+
     useEffect(() => {
         if (message) {
-            const timer = setTimeout(() => {
-                setMessage("");
-            }, 2000);
+            const timer = setTimeout(() => setMessage(""), 2000);
             return () => clearTimeout(timer);
         }
     }, [message]);
+
     const getCategory = async () => {
         const response = await Axiosinstance.get("/category/showAllCategory");
         setCategory(response.data);
     };
+
     useEffect(() => {
         getCategory();
     }, []);
+
+    const resetForm = () => {
+        setName("");
+        setDescription("");
+        setEditId(null);
+    };
+
     const deleteCategory = async (id) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this Category?");
         if (!confirmDelete) return;
         try {
-            const response = await Axiosinstance.delete(`/category/deleteCategory/${id}`)
+            const response = await Axiosinstance.delete(`/category/deleteCategory/${id}`);
             if (response.data.success) {
                 getCategory();
-                setMessage(response.data.message)
+                setMessage(response.data.message);
+            } else {
+                setMessage(response.data.message);
             }
-            else {
-                setMessage(response.data.message)
-            }
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
         }
-    }
+    };
+
     const addCategory = async () => {
         try {
-            const response = await Axiosinstance.post("/category/addCategory", { name, description })
-            getCategory()
-            setName(""); setDescription("")
-            setShow(false)
+            let response;
+            if (!editId) {
+                response = await Axiosinstance.post("/category/addCategory", { name, description });
+            } else {
+                response = await Axiosinstance.put(`/category/editCategory/${editId}`, { name, description });
+            }
+            getCategory();
+            resetForm();
+            setShow(false);
             if (response.data.success) {
                 setMessage(response.data.message);
             }
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
         }
-    }
+    };
+
+    const editCategory = (item) => {
+        setEditId(item._id);
+        setName(item.name);
+        setDescription(item.description);
+        setShow(true);
+    };
 
     return (
         <div className="overflow-x-auto p-4">
-            <div className='flex justify-between w-11/12 mb-5' >
+            <div className='flex justify-between w-11/12 mb-5'>
                 <h1 className="text-white font-bold text-5xl mb-6">Manage Categories</h1>
-                <button onClick={() => setShow(true)} className='bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg px-2 py-1 hover:cursor-pointer'>Add new Category</button>
+                <button
+                    onClick={() => { resetForm(); setShow(true); }}
+                    className='bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg px-2 py-1 hover:cursor-pointer'
+                >
+                    Add new Category
+                </button>
             </div>
 
             {message && (
@@ -75,10 +98,13 @@ const Table = () => {
                     </button>
                 </div>
             )}
+
             {show && (
                 <div className="fixed top-0 left-0 w-full h-full bg-transparent bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-yellow-50 rounded-lg p-6 w-96 shadow-lg">
-                        <h2 className="text-xl font-bold mb-4 text-center text-gray-800">Add New Category</h2>
+                        <h2 className="text-xl font-bold mb-4 text-center text-gray-800">
+                            {editId ? "Edit Category" : "Add New Category"}
+                        </h2>
                         <input
                             type="text"
                             placeholder="Category Name"
@@ -97,7 +123,7 @@ const Table = () => {
                                 onClick={addCategory}
                                 className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 hover:cursor-pointer"
                             >
-                                Add
+                                {editId ? "Update" : "Add"}
                             </button>
                             <button
                                 onClick={() => setShow(false)}
@@ -110,7 +136,7 @@ const Table = () => {
                 </div>
             )}
 
-            <div className=" h-160 overflow-y-auto rounded-lg [&::-webkit-scrollbar]:hidden ">
+            <div className="h-160 overflow-y-auto rounded-lg [&::-webkit-scrollbar]:hidden">
                 <table className="w-11/12 bg-gray-900 text-white rounded-t-lg shadow-lg text-sm">
                     <thead>
                         <tr className="bg-gray-900">
@@ -130,10 +156,16 @@ const Table = () => {
                                 <td className="py-3 px-4">{item.name}</td>
                                 <td className="py-3 px-4">{item.description}</td>
                                 <td className="py-3 px-4 flex justify-center gap-5">
-                                    <button onClick={() => editCategory(item._id)} className='px-3 py-2 hover:cursor-pointer text-white rounded-md bg-yellow-500 hover:bg-yellow-600'>
+                                    <button
+                                        onClick={() => editCategory(item)}
+                                        className='px-3 py-2 text-white rounded-md bg-yellow-500 hover:bg-yellow-600'
+                                    >
                                         Edit
                                     </button>
-                                    <button onClick={() => deleteCategory(item._id)} className='px-3 py-2 hover:cursor-pointer text-white rounded-md bg-red-500 hover:bg-red-600'>
+                                    <button
+                                        onClick={() => deleteCategory(item._id)}
+                                        className='px-3 py-2 text-white rounded-md bg-red-500 hover:bg-red-600'
+                                    >
                                         Delete
                                     </button>
                                 </td>
