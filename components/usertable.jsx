@@ -4,7 +4,6 @@ import Axiosinstance from '../src/Axiosinstance';
 
 const Table = () => {
     const [user, setUser] = useState([]);
-    const [status, setStatus] = useState();
     const [message, setMessage] = useState();
     useEffect(() => {
         if (message) {
