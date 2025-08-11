@@ -13,6 +13,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/login/" element={<Login />} />
       <Route path="/admin/login" element={<Login />} />
       <Route path="/login" element={<Login />} /> 
       <Route path='/signup' element={<Signup/>}/>
@@ -21,6 +22,7 @@ const App = () => {
       <Route path='/admin/showAllUsers' element={<Showallusers/>}/>
       <Route path='/order/showAllOrders' element={<Manageorders/>}/>
       <Route path='/category/showAllCategory' element={<Managecategories/>}/>
+      
     </Routes>
   )
 }

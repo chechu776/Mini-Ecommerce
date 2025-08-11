@@ -6,9 +6,9 @@ import Axiosinstance from '../Axiosinstance'
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [message, setMessage] = useState("") 
+    const [message, setMessage] = useState("")
     const navigate = useNavigate()
-
+    const isAdmin = location.pathname === "/admin/login";
     useEffect(() => {
         if (message) {
             const timer = setTimeout(() => {
@@ -20,14 +20,16 @@ const Login = () => {
 
     const HandleLogin = async () => {
         try {
-            const response = await Axiosinstance.post("/admin/login", {
+            const apiEndpoint = isAdmin ? "/admin/login" : "/login/";
+
+            const response = await Axiosinstance.post(apiEndpoint, {
                 email: email,
                 password: password
             }, {
                 withCredentials: true
             })
             if (response.data.type) {
-                navigate("/admindashboard");
+                navigate(isAdmin ? "/admindashboard" : "/home");
             } else {
                 setMessage(response.data.message);
             }
@@ -47,7 +49,7 @@ const Login = () => {
                         className="mx-auto h-10 w-auto"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-white">
-                        Log In to your account
+                        {isAdmin ? "Admin Login" : "User Login"}
                     </h2>
                 </div>
 
