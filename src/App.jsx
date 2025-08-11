@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Login from './pages/admin_login.jsx'
+import Login from './pages/login.jsx'
 import Home from './pages/home.jsx'
 import Signup from './pages/signup.jsx'
 import Admindashboard from './pages/admindashboard.jsx'
