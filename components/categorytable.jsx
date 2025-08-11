@@ -110,37 +110,38 @@ const Table = () => {
                 </div>
             )}
 
-
-            <table className="w-11/12 bg-gray-900 text-white rounded-t-lg shadow-lg">
-                <thead>
-                    <tr className="bg-gray-900">
-                        <th className="py-2 px-4 text-center">ID</th>
-                        <th className="py-2 px-4 text-center">Category Name</th>
-                        <th className="py-2 px-4 text-center">Description</th>
-                        <th className="py-2 px-4 text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {category.map((item, index) => (
-                        <tr
-                            key={index}
-                            className="bg-white hover:bg-gray-200 text-gray-800 hover:text-gray-900 font-medium border-b border-gray-300 text-center"
-                        >
-                            <td className="py-3 px-4">{index + 1}</td>
-                            <td className="py-3 px-4">{item.name}</td>
-                            <td className="py-3 px-4">{item.description}</td>
-                            <td className="py-3 px-4 flex justify-center gap-5">
-                                <button onClick={() => editCategory(item._id)} className='px-3 py-2 hover:cursor-pointer text-white rounded-md bg-yellow-500 hover:bg-yellow-600'>
-                                    Edit
-                                </button>
-                                <button onClick={() => deleteCategory(item._id)} className='px-3 py-2 hover:cursor-pointer text-white rounded-md bg-red-500 hover:bg-red-600'>
-                                    Delete
-                                </button>
-                            </td>
+            <div className=" h-160 overflow-y-auto rounded-lg [&::-webkit-scrollbar]:hidden ">
+                <table className="w-11/12 bg-gray-900 text-white rounded-t-lg shadow-lg text-sm">
+                    <thead>
+                        <tr className="bg-gray-900">
+                            <th className="py-2 px-4 text-center">ID</th>
+                            <th className="py-2 px-4 text-center">Category Name</th>
+                            <th className="py-2 px-4 text-center">Description</th>
+                            <th className="py-2 px-4 text-center">Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {category.map((item, index) => (
+                            <tr
+                                key={index}
+                                className="bg-white hover:bg-gray-200 text-gray-800 hover:text-gray-900 font-medium border-b border-gray-300 text-center"
+                            >
+                                <td className="py-3 px-4">{index + 1}</td>
+                                <td className="py-3 px-4">{item.name}</td>
+                                <td className="py-3 px-4">{item.description}</td>
+                                <td className="py-3 px-4 flex justify-center gap-5">
+                                    <button onClick={() => editCategory(item._id)} className='px-3 py-2 hover:cursor-pointer text-white rounded-md bg-yellow-500 hover:bg-yellow-600'>
+                                        Edit
+                                    </button>
+                                    <button onClick={() => deleteCategory(item._id)} className='px-3 py-2 hover:cursor-pointer text-white rounded-md bg-red-500 hover:bg-red-600'>
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
