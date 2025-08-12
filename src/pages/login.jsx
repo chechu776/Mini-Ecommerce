@@ -113,13 +113,15 @@ const Login = () => {
 
 
                     </div>
-
-                    <p className="mt-10 text-center text-sm text-gray-400">
-                        Don't have an Account?{' '}
-                        <Link to={"/signup"} className="font-semibold text-indigo-400 hover:text-indigo-300">
-                            Sign Up
-                        </Link>
-                    </p>
+                    {
+                        !isAdmin && 
+                            <p className="mt-10 text-center text-sm text-gray-400">
+                                Don't have an Account?{' '}
+                                <Link to={"/signup"} className="font-semibold text-indigo-400 hover:text-indigo-300">
+                                    Sign Up
+                                </Link>
+                            </p>
+                    }
                 </div>
             </div>
         </div>
