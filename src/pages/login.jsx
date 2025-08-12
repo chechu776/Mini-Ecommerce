@@ -30,6 +30,7 @@ const Login = () => {
             })
             if (response.data.type) {
                 localStorage.setItem("role", response.data.role); 
+                localStorage.setItem("id",response.data.id)
                 navigate(isAdmin ? "/admindashboard" : "/home");
             } else {
                 setMessage(response.data.message);
@@ -121,6 +122,7 @@ const Login = () => {
                                     Sign Up
                                 </Link>
                             </p>
+            
                     }
                 </div>
             </div>
