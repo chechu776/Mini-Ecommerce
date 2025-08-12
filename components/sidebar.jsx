@@ -6,6 +6,8 @@ import Axiosinstance from "../src/Axiosinstance";
 const Sidebar = () => {
 
   const navigate = useNavigate()
+
+
   const logout = async () => {
     try {
       const response = await Axiosinstance.get("/admin/logout", {
@@ -14,6 +16,7 @@ const Sidebar = () => {
       console.log(response.data.success);
 
       if (response.data.success) {
+        localStorage.removeItem("role");
         alert(response.data.message)
         navigate("/admin/login")
       }

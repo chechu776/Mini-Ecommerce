@@ -8,6 +8,7 @@ import Showallproducts from './pages/manageproducts.jsx'
 import Showallusers from './pages/manageusers.jsx'
 import Manageorders from './pages/manageorders.jsx'
 import Managecategories from './pages/managecategories.jsx'
+import AdminProtectedRoute from './AdminProtectedRoutes.jsx'
 
 const App = () => {
   return (
@@ -17,11 +18,11 @@ const App = () => {
       <Route path="/admin/login" element={<Login />} />
       <Route path="/login" element={<Login />} /> 
       <Route path='/signup' element={<Signup/>}/>
-      <Route path="/admindashboard" element={<Admindashboard/>}/>
-      <Route path='/product/showAllProduct' element={<Showallproducts/>}/>
-      <Route path='/admin/showAllUsers' element={<Showallusers/>}/>
-      <Route path='/order/showAllOrders' element={<Manageorders/>}/>
-      <Route path='/category/showAllCategory' element={<Managecategories/>}/>
+      <Route path="/admindashboard" element={<AdminProtectedRoute><Admindashboard/></AdminProtectedRoute>}/>
+      <Route path='/product/showAllProduct' element={<AdminProtectedRoute><Showallproducts/></AdminProtectedRoute>}/>
+      <Route path='/admin/showAllUsers' element={<AdminProtectedRoute><Showallusers/></AdminProtectedRoute>}/>
+      <Route path='/order/showAllOrders' element={<AdminProtectedRoute><Manageorders/></AdminProtectedRoute>}/>
+      <Route path='/category/showAllCategory' element={<AdminProtectedRoute><Managecategories/></AdminProtectedRoute>}/>
     </Routes>
   )
 }

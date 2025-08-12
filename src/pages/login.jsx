@@ -29,6 +29,7 @@ const Login = () => {
                 withCredentials: true
             })
             if (response.data.type) {
+                localStorage.setItem("role", response.data.role); 
                 navigate(isAdmin ? "/admindashboard" : "/home");
             } else {
                 setMessage(response.data.message);
