@@ -22,7 +22,6 @@ const App = () => {
       <Route path='/admin/showAllUsers' element={<Showallusers/>}/>
       <Route path='/order/showAllOrders' element={<Manageorders/>}/>
       <Route path='/category/showAllCategory' element={<Managecategories/>}/>
-      
     </Routes>
   )
 }
