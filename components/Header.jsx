@@ -81,7 +81,6 @@ function Header() {
             </div>
 
 
-
             <div>
                 <a href="">
                     <img src={dots} alt="menu" className="p-2 hover:bg-gray-100 rounded-lg hover:border border-gray-200" />
