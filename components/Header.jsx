@@ -37,7 +37,7 @@ function Header() {
         return () => window.removeEventListener("storage", syncAuth);
     }, []);
     return (
-        <header className="flex items-center gap-10 w-full h-16 px-6 bg-white">
+        <header className="flex items-center gap-10 w-full h-16 px-6 bg-white fixed z-10 relative">
             <div>
                 <Link href="/" className="flex"><img src={flipKart} alt="logo" /></Link>
             </div>
