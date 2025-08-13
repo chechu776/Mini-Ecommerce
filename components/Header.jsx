@@ -39,11 +39,11 @@ function Header() {
     return (
         <header className="flex items-center gap-10 w-full h-16 px-6 bg-white">
             <div>
-                <a href="/" className="flex"><img src={flipKart} alt="logo" /></a>
+                <Link href="/" className="flex"><img src={flipKart} alt="logo" /></Link>
             </div>
 
             <div className="flex items-center w-3/6 bg-blue-50 px-3 py-2 rounded-lg gap-2">
-                <a href=""><img src={search} alt="search button" /></a>
+                <Link href=""><img src={search} alt="search button" /></Link>
                 <input className="w-full outline-0" type="text" placeholder="Search for Products, Brands and More" />
             </div>
 
