@@ -7,6 +7,7 @@ import guest from "../src/assets/imgi_4_profile-52e0dc.svg";
 import dropDown from "../src/assets/download (1).svg";
 import cart from "../src/assets/imgi_313_Cart.svg";
 import dots from "../src/assets/imgi_13_header_3verticalDots-ea7819.svg";
+import newArrival from "../src/assets/imgi_12_Store-9eeae2.svg"
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -36,7 +37,7 @@ function Header() {
         return () => window.removeEventListener("storage", syncAuth);
     }, []);
     return (
-        <header className="flex items-center justify-between w-full h-16 px-6 bg-white">
+        <header className="flex items-center gap-10 w-full h-16 px-6 bg-white">
             <div>
                 <a href="/" className="flex"><img src={flipKart} alt="logo" /></a>
             </div>
@@ -67,10 +68,19 @@ function Header() {
 
             <div>
                 <a href="" className="flex gap-2 items-center">
+                    <img src={newArrival} alt="NEW ARRIVALS" />
+                    <p>New Arrivals</p>
+                </a>
+            </div>
+
+            <div>
+                <a href="" className="flex gap-2 items-center">
                     <img src={cart} alt="cart" />
                     <p>Cart</p>
                 </a>
             </div>
+
+
 
             <div>
                 <a href="">
