@@ -58,24 +58,7 @@ function Header() {
                 <input className="w-full outline-0" type="text" placeholder="Search for Products, Brands and More" />
             </div>
 
-            {!id ? (
-                <div>
-                    <Link to="/login" className="flex gap-2 hover:bg-blue-600 hover:text-white transition-all px-2 py-2 rounded-lg group">
-                        <img src={guest} alt="guest" className="group-hover:invert" />
-                        <p>Login</p>
-                        <img src={dropDown} alt="dropdown" className="group-hover:rotate-180 group-hover:transition-all group-hover:duration-300 group-hover:invert" />
-                    </Link>
-                </div>
-            ) : (
-                <div>
-                    <button
-                        onClick={logout}
-                        className="flex gap-2 bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition-all hover:cursor-pointer"
-                    >
-                        Logout
-                    </button>
-                </div>
-            )}
+            
 
             <div>
                 <Link
@@ -102,6 +85,25 @@ function Header() {
                     <p>Orders</p>
                 </Link>
             </div>
+
+            {!id ? (
+                <div>
+                    <Link to="/login" className="flex gap-2 hover:bg-blue-600 hover:text-white transition-all px-2 py-2 rounded-lg group">
+                        <img src={guest} alt="guest" className="group-hover:invert" />
+                        <p>Login</p>
+                        <img src={dropDown} alt="dropdown" className="group-hover:rotate-180 group-hover:transition-all group-hover:duration-300 group-hover:invert" />
+                    </Link>
+                </div>
+            ) : (
+                <div>
+                    <button
+                        onClick={logout}
+                        className="flex gap-2 bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600 transition-all hover:cursor-pointer"
+                    >
+                        Logout
+                    </button>
+                </div>
+            )}
         </header>
     );
 }
