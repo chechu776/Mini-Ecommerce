@@ -1,6 +1,6 @@
 import Axiosinstance from "../src/Axiosinstance";
 import { useNavigate } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import flipKart from "../src/assets/fkheaderlogo_exploreplus-44005d.svg";
 import search from "../src/assets/download.svg";
 import guest from "../src/assets/imgi_4_profile-52e0dc.svg";
@@ -8,11 +8,21 @@ import dropDown from "../src/assets/download (1).svg";
 import cart from "../src/assets/imgi_313_Cart.svg";
 import dots from "../src/assets/imgi_13_header_3verticalDots-ea7819.svg";
 import newArrival from "../src/assets/imgi_12_Store-9eeae2.svg"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Header() {
     const [id, setId] = useState(localStorage.getItem("id"));
+    const location = useLocation()
+    const navigate= useNavigate()
 
+    const handleNewArrivalsClick = (e) => {
+        if (location.pathname === "/") {
+            const section = document.getElementById("new-arrivals");
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    };
     const logout = async () => {
         try {
             const response = await Axiosinstance.get("/user/logout");
@@ -67,24 +77,28 @@ function Header() {
             )}
 
             <div>
-                <a href="" className="flex gap-2 items-center">
+                <Link
+                    to="/"
+                    onClick={handleNewArrivalsClick}
+                    className="flex gap-2 items-center hover:bg-gray-100 px-2 py-2 rounded-lg transition-all"
+                >
                     <img src={newArrival} alt="NEW ARRIVALS" />
                     <p>New Arrivals</p>
-                </a>
+                </Link>
             </div>
 
             <div>
-                <a href="" className="flex gap-2 items-center">
+                <Link href="" className="flex gap-2 items-center">
                     <img src={cart} alt="cart" />
                     <p>Cart</p>
-                </a>
+                </Link>
             </div>
 
 
             <div>
-                <a href="">
+                <Link href="">
                     <img src={dots} alt="menu" className="p-2 hover:bg-gray-100 rounded-lg hover:border border-gray-200" />
-                </a>
+                </Link>
             </div>
         </header>
     );
