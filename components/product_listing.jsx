@@ -58,7 +58,7 @@ const Product_listing = () => {
     };
 
     return (
-        <div className="p-6">
+        <div className="p-6" id="new-arrivals">
             <h1
                 className="font-bold text-center text-5xl text-black my-10"
                 style={{ fontFamily: "Integral CF" }}
