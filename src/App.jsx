@@ -9,6 +9,8 @@ import Showallusers from './pages/manageusers.jsx'
 import Manageorders from './pages/manageorders.jsx'
 import Managecategories from './pages/managecategories.jsx'
 import AdminProtectedRoute from './AdminProtectedRoutes.jsx'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 const App = () => {
   return (
