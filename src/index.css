@@ -1,1 +1,15 @@
 @import "tailwindcss";
+.slick-dots li button:before {
+  color: black !important;
+  opacity: 0.75;
+}
+
+.slick-dots li.slick-active button:before {
+  color: black !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 24px;
+}
