@@ -50,11 +50,6 @@ const Product_listing = () => {
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
-        responsive: [
-            { breakpoint: 1024, settings: { slidesToShow: 3 } },
-            { breakpoint: 768, settings: { slidesToShow: 2 } },
-            { breakpoint: 480, settings: { slidesToShow: 1 } }
-        ]
     };
 
     return (
@@ -104,7 +99,7 @@ const Product_listing = () => {
                                     <div className="flex justify-between items-center mt-3">
                                         <span className="text-black font-bold">₹{item.price}</span>
                                         <button className="bg-black text-white px-3 py-1 rounded-md hover:bg-black/80 hover:cursor-pointer">
-                                            View More
+                                            Add to Cart
                                         </button>
                                     </div>
                                 </div>

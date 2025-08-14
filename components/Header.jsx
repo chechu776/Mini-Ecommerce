@@ -8,6 +8,7 @@ import dropDown from "../src/assets/download (1).svg";
 import cart from "../src/assets/imgi_313_Cart.svg";
 import dots from "../src/assets/imgi_13_header_3verticalDots-ea7819.svg";
 import newArrival from "../src/assets/imgi_12_Store-9eeae2.svg"
+import orderbutton from "../src/assets/shopping-bag.png"
 import { Link, useLocation } from "react-router-dom";
 
 function Header() {
@@ -47,7 +48,7 @@ function Header() {
         return () => window.removeEventListener("storage", syncAuth);
     }, []);
     return (
-        <header className="flex items-center gap-10 w-full h-16 px-6 bg-white fixed z-10 relative">
+        <header className="flex items-center gap-10 w-full h-16  bg-white fixed z-10 relative">
             <div>
                 <Link href="/" className="flex"><img src={flipKart} alt="logo" /></Link>
             </div>
@@ -88,7 +89,7 @@ function Header() {
             </div>
 
             <div>
-                <Link href="" className="flex gap-2 items-center">
+                <Link href="" className="flex gap-2 items-center hover:bg-gray-100 px-2 py-2 rounded-lg transition-all">
                     <img src={cart} alt="cart" />
                     <p>Cart</p>
                 </Link>
@@ -96,8 +97,9 @@ function Header() {
 
 
             <div>
-                <Link href="">
-                    <img src={dots} alt="menu" className="p-2 hover:bg-gray-100 rounded-lg hover:border border-gray-200" />
+                <Link href="" className="flex gap-2 items-center hover:bg-gray-100 px-2 py-2 rounded-lg transition-all">
+                    <img src={orderbutton} alt="menu" className="p-1 hover:bg-gray-100 rounded-lg" />
+                    <p>Orders</p>
                 </Link>
             </div>
         </header>
