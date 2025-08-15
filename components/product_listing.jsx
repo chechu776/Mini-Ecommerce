@@ -67,7 +67,6 @@ const Product_listing = () => {
                     onChange={(e) => setSelectedCategory(e.target.value)}
                     className="border px-4 py-2 rounded-md"
                 >
-                    
                     {categories.map((cat, index) => (
                         <option key={index} value={cat}>
                             {cat}
