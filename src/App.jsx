@@ -9,7 +9,12 @@ import Showallusers from './pages/manageusers.jsx'
 import Manageorders from './pages/manageorders.jsx'
 import Managecategories from './pages/managecategories.jsx'
 import AdminProtectedRoute from './AdminProtectedRoutes.jsx'
-import "slick-carousel/slick/slick.css"; 
+import ProductDetails from './pages/ProductDetails.jsx'
+import CartPage from './pages/CartPage.jsx'
+import OrderPage from './pages/OrderPage.jsx'
+import AllOrders from './pages/AllOrders.jsx'
+import UserProtectedRoute from './UserProtectedRoutes.jsx'
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const App = () => {
@@ -19,13 +24,17 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/admin/login" element={<Login />} />
-      <Route path="/login" element={<Login />} /> 
-      <Route path='/signup' element={<Signup/>}/>
-      <Route path="/admindashboard" element={<AdminProtectedRoute><Admindashboard/></AdminProtectedRoute>}/>
-      <Route path='/product/showAllProduct' element={<AdminProtectedRoute><Showallproducts/></AdminProtectedRoute>}/>
-      <Route path='/admin/showAllUsers' element={<AdminProtectedRoute><Showallusers/></AdminProtectedRoute>}/>
-      <Route path='/order/showAllOrders' element={<AdminProtectedRoute><Manageorders/></AdminProtectedRoute>}/>
-      <Route path='/category/showAllCategory' element={<AdminProtectedRoute><Managecategories/></AdminProtectedRoute>}/>
+      <Route path="/login" element={<Login />} />
+      <Route path='/signup' element={<Signup />} />
+      <Route path='/cart' element={<UserProtectedRoute><CartPage /></UserProtectedRoute>}/>
+      <Route path='/orders' element={<UserProtectedRoute><AllOrders /></UserProtectedRoute>}/>
+      <Route path="/order/:id" element={<UserProtectedRoute><OrderPage /></UserProtectedRoute>} />
+      <Route path="/admindashboard" element={<AdminProtectedRoute><Admindashboard /></AdminProtectedRoute>} />
+      <Route path='/product/showAllProduct' element={<AdminProtectedRoute><Showallproducts /></AdminProtectedRoute>} />
+      <Route path="/product/showProduct/:id" element={<ProductDetails />} />
+      <Route path='/admin/showAllUsers' element={<AdminProtectedRoute><Showallusers /></AdminProtectedRoute>} />
+      <Route path='/order/showAllOrders' element={<AdminProtectedRoute><Manageorders /></AdminProtectedRoute>} />
+      <Route path='/category/showAllCategory' element={<AdminProtectedRoute><Managecategories /></AdminProtectedRoute>} />
     </Routes>
   )
 }
