@@ -20,7 +20,7 @@ const Login = () => {
 
     const HandleLogin = async () => {
         try {
-            const apiEndpoint = isAdmin ? "/admin/login" : "/login/";
+            const apiEndpoint = isAdmin ? "/admin/login" : "/login";
 
             const response = await Axiosinstance.post(apiEndpoint, {
                 email: email,
