@@ -19,13 +19,22 @@ const ProductDetails = () => {
 
     const handleAddToCart = async () => {
         try {
+            const userId = localStorage.getItem("id");
+            if (!userId) {
+                alert("Please login to add items to your cart");
+                navigate("/login");
+                return;
+            }
+
             await Axiosinstance.post("/cart/addToCart", {
                 productId: product._id,
                 quantity,
             });
-            navigate("/cart")
+
+            navigate("/cart");
         } catch (err) {
             console.error("Error adding to cart:", err);
+            alert("Something went wrong while adding to cart");
         }
     };
 
@@ -57,7 +66,6 @@ const ProductDetails = () => {
 
                     <div className="mt-10">
                         <p className="text-2xl font-semibold text-gray-900">₹{product.price}</p>
-
 
                         <div className="flex items-center mt-6 space-x-4">
                             <span className="text-lg font-medium text-gray-700">Quantity:</span>
