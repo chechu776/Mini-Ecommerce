@@ -14,6 +14,7 @@ import CartPage from './pages/CartPage.jsx'
 import OrderPage from './pages/OrderPage.jsx'
 import AllOrders from './pages/AllOrders.jsx'
 import UserProtectedRoute from './UserProtectedRoutes.jsx'
+import SearchResults from './pages/SearchResults.jsx'
 import Profile from './pages/Profile.jsx'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -26,6 +27,7 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/admin/login" element={<Login />} />
       <Route path='/signup' element={<Signup />} />
+      <Route path="/search/:query" element={<SearchResults />} />
 
 
       <Route path='/cart' element={<UserProtectedRoute><CartPage /></UserProtectedRoute>} />
