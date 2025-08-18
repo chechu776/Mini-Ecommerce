@@ -65,14 +65,12 @@ function Header() {
 
     return (
         <header className="flex items-center gap-10 w-full h-16 bg-white fixed z-10 relative px-4">
-            {/* Logo */}
             <div>
                 <Link to="/" className="flex">
                     <img src={flipKart} alt="logo" />
                 </Link>
             </div>
 
-            {/* Search */}
             <div className="flex items-center w-3/6 bg-blue-50 px-3 py-2 rounded-lg gap-2">
                 <img src={search} alt="search button" />
                 <input
@@ -108,7 +106,6 @@ function Header() {
                 )}
             </div>
 
-            {/* Orders */}
             <div>
                 <Link
                     to="/orders"
@@ -119,7 +116,6 @@ function Header() {
                 </Link>
             </div>
 
-            {/* Auth */}
             {!id ? (
                 <div>
                     <Link
