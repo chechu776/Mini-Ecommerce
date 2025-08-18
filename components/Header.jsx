@@ -8,7 +8,7 @@ import dropDown from "../src/assets/download (1).svg";
 import cart from "../src/assets/imgi_313_Cart.svg";
 import newArrival from "../src/assets/imgi_12_Store-9eeae2.svg";
 import orderbutton from "../src/assets/shopping-bag.png";
-import profileIcon from "../src/assets/profile.png"; 
+import profileIcon from "../src/assets/profile.png";
 
 function Header() {
     const [id, setId] = useState(localStorage.getItem("id"));
@@ -64,6 +64,15 @@ function Header() {
         }
     };
 
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearch = (e) => {
+        if (e.key === "Enter" && searchQuery.trim() !== "") {
+            navigate(`/search/${searchQuery}`);
+        }
+    };
+
+
     return (
         <header className="flex items-center gap-10 w-full h-16 bg-white fixed z-10 relative px-4">
             <div>
@@ -78,6 +87,9 @@ function Header() {
                     className="w-full outline-0"
                     type="text"
                     placeholder="Search for Products, Brands and More"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyDown={handleSearch}
                 />
             </div>
 
