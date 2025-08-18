@@ -8,6 +8,7 @@ import dropDown from "../src/assets/download (1).svg";
 import cart from "../src/assets/imgi_313_Cart.svg";
 import newArrival from "../src/assets/imgi_12_Store-9eeae2.svg";
 import orderbutton from "../src/assets/shopping-bag.png";
+import profileIcon from "../src/assets/profile.png"; 
 
 function Header() {
     const [id, setId] = useState(localStorage.getItem("id"));
@@ -71,7 +72,7 @@ function Header() {
                 </Link>
             </div>
 
-            <div className="flex items-center w-3/6 bg-blue-50 px-3 py-2 rounded-lg gap-2">
+            <div className="flex items-center w-150 bg-blue-50 px-3 py-2 rounded-lg gap-2">
                 <img src={search} alt="search button" />
                 <input
                     className="w-full outline-0"
@@ -115,6 +116,18 @@ function Header() {
                     <p>Orders</p>
                 </Link>
             </div>
+
+            {id && (
+                <div>
+                    <Link
+                        to="/profile"
+                        className="flex gap-2 items-center hover:bg-gray-100 px-2 py-2 rounded-lg transition-all"
+                    >
+                        <img src={profileIcon} alt="profile" className="w-6 h-6 rounded-full" />
+                        <p>Profile</p>
+                    </Link>
+                </div>
+            )}
 
             {!id ? (
                 <div>
