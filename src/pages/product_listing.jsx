@@ -10,7 +10,9 @@ const Product_listing = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
-    const navigate=useNavigate()
+    const [sortOrder, setSortOrder] = useState("default");
+    const navigate = useNavigate();
+
     const getProduct = async () => {
         try {
             const response = await Axiosinstance.get("/product/showAllProduct");
@@ -35,15 +37,21 @@ const Product_listing = () => {
     }, []);
 
     useEffect(() => {
-        if (selectedCategory === "All") {
-            setFilteredProducts(products);
-        } else {
-            setFilteredProducts(products.filter((p) => {
-                const categoryName = p.category.name
+        let updatedProducts = [...products];
+        if (selectedCategory !== "All") {
+            updatedProducts = updatedProducts.filter((p) => {
+                const categoryName = p.category.name;
                 return categoryName === selectedCategory;
-            }));
+            });
         }
-    }, [selectedCategory, products]);
+        if (sortOrder === "lowToHigh") {
+            updatedProducts.sort((a, b) => a.price - b.price);
+        } else if (sortOrder === "highToLow") {
+            updatedProducts.sort((a, b) => b.price - a.price);
+        }
+
+        setFilteredProducts(updatedProducts);
+    }, [selectedCategory, sortOrder, products]);
 
     const sliderSettings = {
         infinite: true,
@@ -61,7 +69,7 @@ const Product_listing = () => {
                 New Arrivals
             </h1>
 
-            <div className="mb-6 flex justify-end">
+            <div className="mb-6 flex justify-end gap-4 items-center">
                 <select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
@@ -72,6 +80,16 @@ const Product_listing = () => {
                             {cat}
                         </option>
                     ))}
+                </select>
+
+                <select
+                    value={sortOrder}
+                    onChange={(e) => setSortOrder(e.target.value)}
+                    className="border px-4 py-2 rounded-md"
+                >
+                    <option value="default">Sort By</option>
+                    <option value="lowToHigh">Price: Low to High</option>
+                    <option value="highToLow">Price: High to Low</option>
                 </select>
             </div>
 
@@ -85,7 +103,7 @@ const Product_listing = () => {
                                 <img
                                     src={`http://localhost:3000/${item.image}`}
                                     alt={item.name}
-                                    className="w-full h-64  rounded-t-xl"
+                                    className="w-full h-64 rounded-t-xl"
                                     loading="lazy"
                                 />
 
