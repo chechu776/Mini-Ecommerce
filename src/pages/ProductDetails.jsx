@@ -37,6 +37,7 @@ const ProductDetails = () => {
             alert("Something went wrong while adding to cart");
         }
     };
+
     useEffect(() => {
         fetchProduct();
     }, [id]);
