@@ -78,6 +78,7 @@ function Header() {
             <div>
                 <Link to="/" className="flex">
                     <img src={flipKart} alt="logo" />
+                    {/* <h1 style={{fontFamily:"Integral CF"}} className="text-3xl">SHOP.CO</h1> */}
                 </Link>
             </div>
 
