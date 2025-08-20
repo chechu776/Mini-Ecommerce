@@ -18,6 +18,7 @@ import SearchResults from './pages/SearchResults.jsx'
 import Profile from './pages/Profile.jsx'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 const App = () => {
   return (
     <Routes>
