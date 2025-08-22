@@ -17,6 +17,7 @@ const Login = () => {
             return () => clearTimeout(timer);
         }
     }, [message]);
+
     const HandleLogin = async () => {
         try {
             const apiEndpoint = isAdmin ? "/admin/login" : "/login";
