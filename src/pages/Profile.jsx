@@ -7,7 +7,8 @@ const Profile = () => {
         name: "",
         email: "",
         phone: "",
-        password: "",
+        password: "", // new password
+        oldPassword: "", // added for old password
         image: "",
     });
     const [preview, setPreview] = useState(null);
@@ -26,14 +27,13 @@ const Profile = () => {
         const fetchUser = async () => {
             try {
                 const res = await Axiosinstance.get(`/user/${id}`);
-                console.log(res.data);
-                
                 if (res.data) {
                     setUser({
                         name: res.data.name || "",
                         email: res.data.email || "",
                         phone: res.data.phone || "",
                         password: "",
+                        oldPassword: "",
                         image: res.data.image || "",
                     });
                     if (res.data.image) {
@@ -74,6 +74,7 @@ const Profile = () => {
             formData.append("name", user.name);
             formData.append("email", user.email);
             formData.append("phone", user.phone);
+            formData.append("oldPassword", user.oldPassword);
             formData.append("password", user.password);
             if (file) {
                 formData.append("image", file);
@@ -91,8 +92,11 @@ const Profile = () => {
                 alert("Update failed");
             }
         } catch (err) {
-            console.error(err);
-            alert("Something went wrong while updating");
+            if (err.response && err.response.data.message) {
+                alert(err.response.data.message);
+            } else {
+                alert("Something went wrong");
+            }
         }
     };
 
@@ -154,7 +158,20 @@ const Profile = () => {
                 </div>
 
                 <div>
-                    <label className="block font-semibold text-gray-700 mb-1">Password</label>
+                    <label className="block font-semibold text-gray-700 mb-1">Old Password</label>
+                    <input
+                        type="password"
+                        name="oldPassword"
+                        value={user.oldPassword}
+                        onChange={handleChange}
+                        placeholder="Enter current password"
+                        className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:ring-2 focus:ring-black outline-none"
+                        required
+                    />
+                </div>
+
+                <div>
+                    <label className="block font-semibold text-gray-700 mb-1">New Password</label>
                     <input
                         type="password"
                         name="password"
