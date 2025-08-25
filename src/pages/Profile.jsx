@@ -57,7 +57,6 @@ const Profile = () => {
             [e.target.name]: e.target.value,
         });
     };
-
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         setFile(selectedFile);
