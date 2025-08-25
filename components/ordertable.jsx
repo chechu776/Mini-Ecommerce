@@ -129,18 +129,20 @@ const Table = () => {
                                                 <select
                                                     value={order.shippingStatus}
                                                     onChange={(e) => updateShippingStatus(order._id, e.target.value)}
+                                                    disabled={order.shippingStatus === "Delivered" || order.shippingStatus === "Cancelled"}
                                                     className={`border rounded p-1 font-semibold bg-white
-                                                ${order.shippingStatus === "Pending" ? "border-yellow-400 text-yellow-600" : ""}
-                                                ${order.shippingStatus === "Shipped" ? "border-blue-400 text-blue-600" : ""}
-                                                ${order.shippingStatus === "Delivered" ? "border-green-400 text-green-600" : ""}
-                                                ${order.shippingStatus === "Cancelled" ? "border-red-400 text-red-600" : ""}
-                                            `}
+                                                        ${order.shippingStatus === "Pending" ? "border-yellow-400 text-yellow-600" : ""}
+                                                        ${order.shippingStatus === "Shipped" ? "border-blue-400 text-blue-600" : ""}
+                                                        ${order.shippingStatus === "Delivered" ? "border-green-400 text-green-600" : ""}
+                                                        ${order.shippingStatus === "Cancelled" ? "border-red-400 text-red-600" : ""}
+                                                    `}
                                                 >
                                                     <option value="Pending">Pending</option>
                                                     <option value="Shipped">Shipped</option>
                                                     <option value="Delivered">Delivered</option>
                                                     <option value="Cancelled">Cancelled</option>
                                                 </select>
+
 
                                             </td>
                                             <td
