@@ -63,7 +63,6 @@ function Header() {
             alert("Logout failed");
         }
     };
-
     const [searchQuery, setSearchQuery] = useState("");
 
     const handleSearch = (e) => {
