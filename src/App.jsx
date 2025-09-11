@@ -29,6 +29,7 @@ const App = () => {
       <Route path='/signup' element={<Signup />} />
       <Route path="/search/:query" element={<SearchResults />} />
 
+      
       <Route path='/cart' element={<UserProtectedRoute><CartPage /></UserProtectedRoute>} />
       <Route path='/orders' element={<UserProtectedRoute><AllOrders /></UserProtectedRoute>} />
       <Route path="/order/:id" element={<UserProtectedRoute><OrderPage /></UserProtectedRoute>} />
