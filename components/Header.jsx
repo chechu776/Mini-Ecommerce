@@ -10,6 +10,7 @@ import newArrival from "../src/assets/imgi_12_Store-9eeae2.svg";
 import orderbutton from "../src/assets/shopping-bag.png";
 import profileIcon from "../src/assets/profile.png";
 
+
 function Header() {
     const [id, setId] = useState(localStorage.getItem("id"));
     const [cartCount, setCartCount] = useState(0);
