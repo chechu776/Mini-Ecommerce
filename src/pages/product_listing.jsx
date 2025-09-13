@@ -101,7 +101,7 @@ const Product_listing = () => {
                         <div key={item._id} className="px-2">
                             <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                                 <img
-                                    src={`http://localhost:3000/${item.image}`}
+                                    src={`http://16.171.28.234/api/${item.image}`}
                                     alt={item.name}
                                     className="w-full h-64 rounded-t-xl"
                                     loading="lazy"
