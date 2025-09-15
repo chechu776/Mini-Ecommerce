@@ -49,7 +49,7 @@ const ProductDetails = () => {
             <div className="bg-white shadow-lg rounded-2xl max-w-5xl w-full p-8 grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="flex justify-center items-center">
                     <img
-                        src={`http://localhost:3000/${product.image}`}
+                        src={`${Axiosinstance.defaults.baseURL}/${product.image}`}
                         alt={product.name}
                         className="w-full max-h-[500px] object-cover rounded-xl shadow-md hover:scale-105 transition-transform duration-300"
                     />

@@ -43,7 +43,7 @@ const OrderPage = () => {
                     <div key={index} className="flex justify-between items-center py-3 border-b">
                         <div className="flex items-center gap-3">
                             <img
-                                src={item.productId?.image ? `http://localhost:3000/${item.productId.image}` : "/no-img.png"}
+                                src={item.productId?.image ? `${Axiosinstance.defaults.baseURL}/${item.productId.image}` : "/no-img.png"}
                                 alt={item.productId?.name || "Product"}
                                 className="w-16 h-16 object-cover rounded"
                             />

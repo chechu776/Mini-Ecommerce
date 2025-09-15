@@ -121,7 +121,7 @@ const CartPage = () => {
                         >
                             <div className="flex items-center space-x-6">
                                 <img
-                                    src={`http://localhost:3000/${item.image || item.product?.image}`}
+                                    src={`${Axiosinstance.defaults.baseURL}/${item.image || item.product?.image}`}
                                     alt={item.name}
                                     className="w-24 h-24 object-cover rounded-xl shadow"
                                 />
