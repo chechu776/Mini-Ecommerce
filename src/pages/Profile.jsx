@@ -37,7 +37,7 @@ const Profile = () => {
                         image: res.data.image || "",
                     });
                     if (res.data.image) {
-                        setPreview(`http://localhost:3000/${res.data.image}`);
+                        setPreview(`${Axiosinstance.defaults.baseURL}/${res.data.image}`);
                     }
                 }
             } catch (err) {
