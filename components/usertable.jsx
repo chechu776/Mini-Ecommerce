@@ -72,7 +72,7 @@ const Table = () => {
                                 <td className="py-3 px-4">
                                     <img
                                         className="w-20 h-20 rounded-2xl object-cover"
-                                        src={`http://localhost:3000/${item.image}`}
+                                        src={`${Axiosinstance.defaults.baseURL}/${item.image}`}
                                         alt=""
                                     />
                                 </td>
