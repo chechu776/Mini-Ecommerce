@@ -169,7 +169,7 @@ const Table = () => {
                             <div className="mb-4">
                                 <p className="text-sm text-gray-600">Current Image:</p>
                                 <img
-                                    src={`http://localhost:3000/${oldImage}`}
+                                    src={`${Axiosinstance.defaults.baseURL}/${oldImage}`}
                                     alt="Product"
                                     className="w-20 h-20 object-cover rounded-md mt-1"
                                 />
@@ -227,7 +227,7 @@ const Table = () => {
                                 <td className="py-3 px-4 flex items-center justify-center">
                                     <img
                                         className="w-20 h-20 rounded-2xl object-cover"
-                                        src={`http://localhost:3000/${item.image}`}
+                                        src={`${Axiosinstance.defaults.baseURL}/${item.image}`}
                                         alt=""
                                     />
                                 </td>
