@@ -106,7 +106,6 @@ const Product_listing = () => {
                                     className="w-full h-64 rounded-t-xl"
                                     loading="lazy"
                                 />
-
                                 <div className="p-4">
                                     <h2 className="text-lg font-semibold text-gray-800 truncate">
                                         {item.name}
